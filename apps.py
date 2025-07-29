@@ -8,14 +8,14 @@ st.set_page_config(page_title="AI Stock Monitor & Shadow Portfolio", layout="wid
 # --- Load Portfolio Data ---
 @st.cache_data
 def load_portfolio():
-    return pd.read_csv("portfolio2.csv")
+    return pd.read_csv("portfolio2.csv", sep="\t")
 
 portfolio = load_portfolio()
 
 # --- Load AI Universe Data ---
 @st.cache_data
 def load_universe():
-    return pd.read_csv("ai_universe.csv")
+    return pd.read_csv("ai_universe.csv", sep="\t")
 
 ai_universe = load_universe()
 
