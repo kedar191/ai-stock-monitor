@@ -8,7 +8,7 @@ st.set_page_config(page_title="AI Stock Monitor & Shadow Portfolio", layout="wid
 # --- Load Portfolio Data ---
 @st.cache_data
 def load_portfolio():
-    return pd.read_csv("portfolio.csv")
+    return pd.read_csv("portfolio2.csv")
 
 portfolio = load_portfolio()
 
