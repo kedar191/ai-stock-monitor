@@ -1,0 +1,13 @@
+Stock,Ticker,Barbell Type,Buy Price,Units,Investment (INR)
+NVIDIA,NVDA,Core,120,100,12000
+Microsoft,MSFT,Core,350,34.29,12000
+Google,GOOGL,Core,140,85.71,12000
+Amazon,AMZN,Core,130,92.31,12000
+Tencent,0700.HK,Core,320,37.50,12000
+Palantir,PLTR,Emerging,25,48,12000
+Adobe,ADBE,Emerging,500,2.4,12000
+CrowdStrike,CRWD,Emerging,380,3.16,12000
+iFlytek,002230.SZ,Emerging,45,266.67,12000
+C3.ai,AI,Moonshot,30,33.33,10000
+UiPath,PATH,Moonshot,22,45.45,10000
+TuSimple,TSP,Moonshot,10,1000,10000
