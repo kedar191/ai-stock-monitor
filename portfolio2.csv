@@ -1,13 +1,13 @@
-Stock,Ticker,Barbell Type,Buy Price,Units,Investment (INR)
-NVIDIA,NVDA,Core,120,100.00,12000
-Microsoft,MSFT,Core,350,34.29,12000
-Google,GOOGL,Core,140,85.71,12000
-Amazon,AMZN,Core,130,92.31,12000
-Tencent,0700.HK,Core,320,37.50,12000
-Palantir,PLTR,Emerging,25,300.00,7500
-Adobe,ADBE,Emerging,500,15.00,7500
-CrowdStrike,CRWD,Emerging,380,19.74,7500
-iFlytek,002230.SZ,Emerging,45,166.67,7500
-C3.ai,AI,Moonshot,30,111.10,3333
-UiPath,PATH,Moonshot,22,151.50,3333
-TuSimple,TSP,Moonshot,10,333.40,3334
+Stock,Ticker,Barbell Type,Buy Price (INR),Units,Investment (INR)
+NVIDIA,NVDA,Core,70150,0.171,12000
+Microsoft,MSFT,Core,30736,0.390,12000
+Google,GOOGL,Core,11783,1.019,12000
+Amazon,AMZN,Core,11514,1.042,12000
+Tencent,0700.HK,Core,3305,3.631,12000
+Palantir,PLTR,Emerging,1697,4.422,7500
+Adobe,ADBE,Emerging,51103,0.147,7500
+CrowdStrike,CRWD,Emerging,30539,0.246,7500
+iFlytek,002230.SZ,Emerging,3731,2.011,7500
+C3.ai,AI,Moonshot,2548,1.308,3333
+UiPath,PATH,Moonshot,1690,1.972,3333
+TuSimple,TSP,Moonshot,836,3.987,3334
