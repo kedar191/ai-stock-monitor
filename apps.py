@@ -8,7 +8,7 @@ st.set_page_config(page_title="AI Stock Monitor & Shadow Portfolio", layout="wid
 # --- Load Portfolio Data ---
 @st.cache_data
 def load_portfolio():
-    return pd.read_csv("portfolio2.csv")
+    return pd.read_csv("portfolio.csv")
 
 portfolio = load_portfolio()
 
@@ -32,21 +32,29 @@ with tab1:
     kpi1.metric("Total Invested (₹)", f"{total_invested:,.0f}")
     total_value = 0
     current_prices = []
+    USDINR = 83.5  # Adjust as needed
+    
     for i, row in portfolio.iterrows():
         try:
             ticker = row['Ticker']
-            ticker_mod = ticker if not ticker.endswith(".SZ") and not ticker.endswith(".HK") else ticker
-            if ticker.endswith(".SZ"):
-                ticker_mod = ticker.replace(".SZ", ".SZ")
-            elif ticker.endswith(".HK"):
-                ticker_mod = ticker.replace(".HK", ".HK")
+            # Use ticker as-is for US stocks; for HK or SZ stocks, keep suffix
+            ticker_mod = ticker
             data = yf.Ticker(ticker_mod)
-            live_price = data.history(period="1d")["Close"].values[-1]
-            current_prices.append(live_price)
-            total_value += live_price * row['Units']
+            live_price_usd = data.history(period="1d")["Close"].values[-1]
+            
+            # Convert USD price to INR for consistency
+            if ticker.endswith(".SZ") or ticker.endswith(".HK"):
+                # Assume prices from yfinance for these markets are in local currency
+                live_price_inr = live_price_usd
+            else:
+                live_price_inr = live_price_usd * USDINR
+            
+            current_prices.append(live_price_inr)
+            total_value += live_price_inr * row['Units']
         except Exception:
-            current_prices.append(row['Buy Price'])
-            total_value += row['Buy Price'] * row['Units']
+            # Fallback: use Buy Price if live fetch fails
+            current_prices.append(row['Buy Price (INR)'])
+            total_value += row['Buy Price (INR)'] * row['Units']
 
     kpi2.metric("Current Value (est, ₹)", f"{int(total_value):,}")
     gain = total_value - total_invested
@@ -54,8 +62,8 @@ with tab1:
     kpi3.metric("Total Return", f"{gain:,.0f} ({gain_pct:+.2f}%)", delta_color="normal")
 
     # Show the table
-    portfolio['Current Price'] = current_prices
-    portfolio['Current Value'] = (portfolio['Current Price'] * portfolio['Units']).round(2)
+    portfolio['Current Price (INR)'] = current_prices
+    portfolio['Current Value'] = (portfolio['Current Price (INR)'] * portfolio['Units']).round(2)
     portfolio['Gain/Loss (₹)'] = (portfolio['Current Value'] - portfolio['Investment (INR)']).round(2)
     portfolio['Gain/Loss (%)'] = ((portfolio['Gain/Loss (₹)'] / portfolio['Investment (INR)']) * 100).round(2)
     st.dataframe(portfolio, use_container_width=True)
